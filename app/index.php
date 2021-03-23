@@ -11,7 +11,7 @@ $app = new \Slim\App([]);
 
 
 $app->get('[/]', function (Request $request, Response $response) {    
-    $response->getBody()->write("Hector Gato");
+    $response->getBody()->write("Nico Gato");
     return $response;
 
 });
