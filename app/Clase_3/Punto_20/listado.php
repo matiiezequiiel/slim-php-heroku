@@ -14,6 +14,26 @@
 // </ul>
 // Hacer los métodos necesarios en la clase usuario
 
+include './class/Usuario.php';
+
+
+if(isset($_GET['listado']) && !empty($_GET['listado']))
+{
+    $listado=$_GET['listado'];
+
+    switch($listado)
+    {
+        case  "usuarios":
+            $arrayUsuarios= Usuario::LeerCsv($listado);
+            Usuario::Listar($arrayUsuarios);
+        break;
+    }
+
+}
+
+
+
+
 
 
 ?>

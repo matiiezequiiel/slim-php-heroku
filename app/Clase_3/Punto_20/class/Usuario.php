@@ -1,5 +1,6 @@
 <?php
 
+
 class Usuario{
 
     public $usuario;
@@ -17,14 +18,12 @@ class Usuario{
     {
         $esCorrecto = false;
 
-        if(isset($usuarioIngresado->usuario)  && isset($usuarioIngresado->clave) && isset ($usuarioIngresado->mail) )
+      
+        if(!empty($usuarioIngresado->usuario) && !empty($usuarioIngresado->clave) && !empty($usuarioIngresado->mail) )
         {
-            if(!empty($usuarioIngresado->usuario) && !empty($usuarioIngresado->clave) && !empty($usuarioIngresado->mail) )
-            {
-                $esCorrecto=true; //Agregar validaciones.
-            }
-            
+            $esCorrecto=true; //Agregar validaciones.
         }
+                 
         
         return $esCorrecto;
 
@@ -35,7 +34,7 @@ class Usuario{
         $altaCorrecta=false;
           
         $miArchivo = fopen("usuarios.csv", "a"); //Guardo el puntero al archivo que voy a escribir.
-        $retorno= fwrite($miArchivo, $nuevoUsuario->usuario . ";" . $nuevoUsuario->clave . ";" .
+        $retorno= fwrite($miArchivo, $nuevoUsuario->usuario . "," . $nuevoUsuario->clave . "," .
         $nuevoUsuario->mail . "\n");
 
         if($retorno != false)
@@ -47,6 +46,37 @@ class Usuario{
 
         return $altaCorrecta;
 
+    }
+
+    static function LeerCsv($listado)
+    {
+        $a=array();
+
+        if(($archivo=fopen("usuarios.csv","r")) != false)
+        {
+            while(($dato = fgetcsv($archivo)) != false)
+            {
+                array_push($a,new Usuario($dato[0],$dato[1],$dato[2])) ; 
+            }
+
+        }
+
+        fclose($archivo);
+
+        return $a;
+    }
+
+    function __toString()
+    {
+        return $this->usuario . ' ' . $this->clave . ' ' . $this->mail ;
+    }
+
+    static function Listar($array)
+    {
+        foreach ($array as $value) {
+            echo $value;
+            echo PHP_EOL;
+        }
     }
 
 }

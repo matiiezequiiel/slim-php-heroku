@@ -10,31 +10,37 @@
 // Cada usuario se agrega en un renglón diferente al anterior.
 // Hacer los métodos necesarios en la clase usuario
 
-echo '<br/>';
-
 include './class/Usuario.php';
 
+
 $nuevoUsuario = new Usuario();
-$nuevoUsuario->usuario = $_POST["usuario"];
-$nuevoUsuario->clave = $_POST["clave"];
-$nuevoUsuario->mail = $_POST["mail"];
 
-if(Usuario::ValidarUsuario($nuevoUsuario))
+if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
 {
-    if(Usuario::AltaUsuario($nuevoUsuario))
-    {
-        echo "Alta correcta";
-    }
-    else
-    {
-        echo "No se pudo dar el alta";
-    }
+    $nuevoUsuario->usuario = $_POST["usuario"];
+    $nuevoUsuario->clave = $_POST["clave"];
+    $nuevoUsuario->mail = $_POST["mail"];
 
-}
-else
-{
-    echo "Datos incorrecto";
-}
+    if(Usuario::ValidarUsuario($nuevoUsuario))
+    {   
+        if(Usuario::AltaUsuario($nuevoUsuario))
+        {
+            echo "Alta correcta";
+        }
+        else
+        {
+            echo "No se pudo dar el alta";
+        }
+
+        }
+        else
+        {
+            echo "Datos incorrecto";
+        }
+
+    }
+    
+
 
 
 ?>
