@@ -1,0 +1,6 @@
+Usuario o clave incorrecta,admin,320213
+Usuario o clave incorrecta,admin,20210331
+Usuario o clave incorrecta,admin,March 31, 2021, 1:10 am
+OK,admin,March 31, 2021, 1:10 am
+Usuario o clave incorrecta,admin,March 31, 2021, 1:11 am
+Faltan datos,admin,March 31, 2021, 1:12 am
