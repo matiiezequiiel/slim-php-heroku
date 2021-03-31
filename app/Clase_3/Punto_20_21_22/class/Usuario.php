@@ -48,7 +48,7 @@ class Usuario{
 
     }
 
-    static function LeerCsv($listado)
+    static function LeerCsv()
     {
         $a=array();
 
@@ -77,6 +77,33 @@ class Usuario{
             echo $value;
             echo PHP_EOL;
         }
+    }
+
+    static function BuscarUsuario($usuario)
+    {
+        $baseUsuarios = Usuario::LeerCsv();
+        $retorno=null;
+
+        foreach ($baseUsuarios as  $value) {
+            if($usuario->mail != $value -> mail)
+            {
+                $retorno = "Usuario no registrado";
+                continue;
+            }
+            else if ($usuario->mail == $value->mail && $usuario->clave != $value->clave ||             $usuario->mail == $value->mail && $usuario->usuario != $value->usuario )
+            {
+                 $retorno = "Error en los datos";
+                 break;
+            }
+            else if($usuario->mail == $value->mail && $usuario->clave == $value->clave && $usuario->usuario == $value->usuario)
+           {
+               $retorno = "Verificado";
+               break;
+           }     
+          
+        }
+
+        return $retorno;
     }
 
 }

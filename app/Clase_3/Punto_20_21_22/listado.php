@@ -1,4 +1,5 @@
 <?php
+// Aguirre,Matias.
 // Aplicación Nº 21 ( Listado CSV y array de usuarios)
 // Archivo: listado.php
 // método:GET
@@ -24,7 +25,7 @@ if(isset($_GET['listado']) && !empty($_GET['listado']))
     switch($listado)
     {
         case  "usuarios":
-            $arrayUsuarios= Usuario::LeerCsv($listado);
+            $arrayUsuarios= Usuario::LeerCsv();
             Usuario::Listar($arrayUsuarios);
         break;
     }
