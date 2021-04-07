@@ -32,13 +32,13 @@ if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
             echo "No se pudo dar el alta";
         }
 
-        }
-        else
-        {
-            echo "Datos incorrecto";
-        }
-
     }
+    else
+    {
+        echo "Datos incorrecto";
+    }
+
+}
     
 
 
