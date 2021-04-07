@@ -51,12 +51,14 @@ class Usuario{
 
     }
 
-    static function GuardarJSON($nuevoUsuario)
+    static function GuardarJSON(Usuario $nuevoUsuario)
     {
         $altaCorrecta=false;
+        $a=Usuario::LeerJSON();
+        array_push($a,$nuevoUsuario);
           
-        $miArchivo = fopen("usuarios.json", "a"); //Guardo el puntero al archivo que voy a escribir.
-        $retorno= fwrite($miArchivo, json_encode($nuevoUsuario,JSON_PRETTY_PRINT) . "\n");
+        $miArchivo = fopen("usuarios.json", "w"); //Guardo el puntero al archivo que voy a escribir.
+        $retorno= fwrite($miArchivo, json_encode($a,JSON_PRETTY_PRINT) . "\n");
 
         if($retorno != false)
         {
@@ -115,14 +117,8 @@ class Usuario{
         if(($archivo=fopen("usuarios.json","r")) != false)
         {
             $dato = fread($archivo,filesize("usuarios.json"));
-          
-            $v=json_decode($dato);
-            var_dump($v);
-
-            //VER
-           
-           
-
+            $a=json_decode($dato);
+            
         }
 
         fclose($archivo);

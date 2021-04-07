@@ -21,7 +21,6 @@ $destino = "./usuarios/fotos/" ;
 
 
 
-
 if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"])  && !empty($_FILES["archivo"] ["tmp_name"]))
 {
     $nuevoUsuario->usuario = $_POST["usuario"];
@@ -52,7 +51,11 @@ if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"])  
     {
         echo "Datos incorrecto";
     }
-}   
+} 
+else
+{
+    echo "algo";
+}
 
 
 ?>

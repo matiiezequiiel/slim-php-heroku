@@ -1,11 +1,35 @@
-{ 
-    "usuario": "Raul",
-    "clave": "25454",
-    "mail": "raul@algo.com",
-    "id": 5987,
-    "fecha": {
-        "date": "2021-04-07 04:21:03.418393",
-        "timezone_type": 3,
-        "timezone": "Europe\/Berlin"
+[
+    {
+        "usuario": "Jorge",
+        "clave": "789",
+        "mail": "jorge@algo.com",
+        "id": 8655,
+        "fecha": {
+            "date": "2021-04-07 19:48:45.712010",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "usuario": "Claudia",
+        "clave": "78943",
+        "mail": "claudia@algo.com",
+        "id": 3355,
+        "fecha": {
+            "date": "2021-04-07 20:34:40.324688",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
+    },
+    {
+        "usuario": "Marcos",
+        "clave": "78943156",
+        "mail": "marcos@algo.com",
+        "id": 3276,
+        "fecha": {
+            "date": "2021-04-07 20:37:48.384906",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+        }
     }
-}
+]
