@@ -24,7 +24,7 @@ if(isset($_GET['listado']) && !empty($_GET['listado']))
     switch($listado)
     {
         case  "usuarios":
-            $arrayUsuarios= Usuario::LeerCsv();
+            $arrayUsuarios= Usuario::LeerJSON();
             Usuario::Listar($arrayUsuarios);
         break;
     }

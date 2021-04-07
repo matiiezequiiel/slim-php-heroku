@@ -95,6 +95,7 @@ class Usuario{
 
         if(($archivo=fopen("usuarios.csv","r")) != false)
         {
+            
             while(($dato = fgetcsv($archivo)) != false)
             {
                 array_push($a,new Usuario($dato[0],$dato[1],$dato[2])) ; 
@@ -107,9 +108,31 @@ class Usuario{
         return $a;
     }
 
+    static function LeerJSON()
+    {
+        $a=array();
+     
+        if(($archivo=fopen("usuarios.json","r")) != false)
+        {
+            $dato = fread($archivo,filesize("usuarios.json"));
+          
+            $v=json_decode($dato);
+            var_dump($v);
+
+            //VER
+           
+           
+
+        }
+
+        fclose($archivo);
+
+        return $a;
+    }
+
     function __toString()
     {
-        return $this->usuario . ' ' . $this->clave . ' ' . $this->mail ;
+        return $this->usuario . ' ' . $this->clave . ' ' . $this->mail . $this->id . ' ' . $this->fecha;
     }
 
     static function Listar($array)
