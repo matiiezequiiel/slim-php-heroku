@@ -1,0 +1,14 @@
+[
+    {
+        "codigoProd": "111111",
+        "idComprador": "3355",
+        "cantidadVendidos": "100",
+        "id": 5205
+    },
+    {
+        "codigoProd": "222222",
+        "idComprador": "8655",
+        "cantidadVendidos": "10",
+        "id": 8379
+    }
+]

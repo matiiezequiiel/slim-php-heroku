@@ -50,9 +50,8 @@ class Producto{
         foreach ($baseProductos as  $value) {
             if ($producto->codigo == $value -> codigo )
             {
-                echo ($producto->stock .  $value->stock );
                 $value->stock =  $producto->stock +  $value->stock ;
-                echo ($value->stock );
+                Producto::ActualizarProducto($baseProductos);
                 $retorno = "Actualizado";
                 $encontre=true;
                 break;
@@ -75,6 +74,29 @@ class Producto{
         }
 
         return $retorno;
+    }
+
+    static function BuscarProductoStock($producto, $vendidos)
+    {
+        $baseProductos = Producto::LeerJSON();
+        $encontre=false;
+
+        foreach ($baseProductos as  $value) {
+            if ($producto->codigo == $value -> codigo )
+            {
+                if($value->stock >= $vendidos){
+
+                    $value->stock = $value->stock - $vendidos;
+                    Producto::ActualizarProducto($baseProductos);
+                    $encontre=true;
+                    break;
+
+                }
+                        
+            }
+          
+        }
+        return $encontre;
     }
 
     static function LeerJSON()
@@ -107,6 +129,24 @@ class Producto{
           
         $miArchivo = fopen("productos.json", "w"); //Guardo el puntero al archivo que voy a escribir.
         $retorno= fwrite($miArchivo, json_encode($a,JSON_PRETTY_PRINT) . "\n");
+
+        if($retorno != false)
+        {
+            $altaCorrecta=true;
+        }
+
+        fclose($miArchivo);
+
+        return $altaCorrecta;
+
+    }
+
+    static function ActualizarProducto($nuevaBaseProd)
+    {
+        $altaCorrecta=false;    
+          
+        $miArchivo = fopen("productos.json", "w"); //Guardo el puntero al archivo que voy a escribir.
+        $retorno= fwrite($miArchivo, json_encode($nuevaBaseProd,JSON_PRETTY_PRINT) . "\n");
 
         if($retorno != false)
         {

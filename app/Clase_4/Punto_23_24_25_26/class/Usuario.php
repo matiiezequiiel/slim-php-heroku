@@ -9,13 +9,30 @@ class Usuario{
     public $id;
     public $fecha;
     
-    function __construct($usuario=null,$clave=null,$mail=null)
+    function __construct($usuario=null,$clave=null,$mail=null,$id=null,$fecha=null)
     {
         $this->usuario=$usuario;
         $this->clave=$clave;
         $this->mail=$mail;
-        $this->id = rand(1,10000);
-        $this->fecha = new DateTime('now');
+        if($id == null)
+        {
+            $this->id = rand(1,10000);
+        }
+        else
+        {
+            $this->id=$id;
+        }
+
+        if($fecha == null)
+        {
+            $this->fecha = new DateTime('now');
+        }
+        else
+        {
+            $this->fecha = $fecha;
+        }
+        
+        
     }
 
     static function ValidarUsuario($usuarioIngresado)
@@ -147,7 +164,7 @@ class Usuario{
 
     static function BuscarUsuario($usuario)
     {
-        $baseUsuarios = Usuario::LeerCsv();
+        $baseUsuarios = Usuario::LeerJSON();
         $retorno=null;
 
         foreach ($baseUsuarios as  $value) {
@@ -156,7 +173,7 @@ class Usuario{
                 $retorno = "Usuario no registrado";
                 continue;
             }
-            else if ($usuario->mail == $value->mail && $usuario->clave != $value->clave ||             $usuario->mail == $value->mail && $usuario->usuario != $value->usuario )
+            else if ($usuario->mail == $value->mail && $usuario->clave != $value->clave || $usuario->mail == $value->mail && $usuario->usuario != $value->usuario )
             {
                  $retorno = "Error en los datos";
                  break;
@@ -170,6 +187,23 @@ class Usuario{
         }
 
         return $retorno;
+    }
+
+    static function BuscarUsuarioId($usuario)
+    {
+        $baseUsuarios = Usuario::LeerJSON();
+        $existe=false;
+
+        foreach ($baseUsuarios as  $value) {
+            if($usuario->id == $value -> id)
+            {
+                $existe=true;
+                break;
+            }
+            
+          
+        }
+        return $existe;
     }
 
 }

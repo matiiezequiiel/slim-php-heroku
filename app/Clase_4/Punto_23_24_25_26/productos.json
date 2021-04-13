@@ -3,7 +3,7 @@
         "codigo": "111111",
         "nombre": "Jabon",
         "tipo": "Perfumeria",
-        "stock": 100,
+        "stock": 500,
         "precio": "150",
         "id": 7413
     },
@@ -11,8 +11,24 @@
         "codigo": "222222",
         "nombre": "Papel",
         "tipo": "Perfumeria",
-        "stock": "10",
+        "stock": 1000,
         "precio": "150",
         "id": 8727
+    },
+    {
+        "codigo": "333333",
+        "nombre": "Fideos",
+        "tipo": "Secos",
+        "stock": 300,
+        "precio": "1500",
+        "id": 6434
+    },
+    {
+        "codigo": "11111",
+        "nombre": null,
+        "tipo": null,
+        "stock": 0,
+        "precio": null,
+        "id": 9597
     }
 ]
