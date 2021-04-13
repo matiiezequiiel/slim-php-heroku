@@ -23,14 +23,9 @@ class Usuario{
             $this->id=$id;
         }
 
-        if($fecha == null)
-        {
-            $this->fecha = new DateTime('now');
-        }
-        else
-        {
-            $this->fecha = $fecha;
-        }
+        $this->fecha = new DateTime('now');
+        
+      
         
         
     }
