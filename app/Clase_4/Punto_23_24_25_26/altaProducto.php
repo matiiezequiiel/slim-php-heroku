@@ -14,23 +14,34 @@
 // “no se pudo hacer“si no se pudo hacer
 // Hacer los métodos necesarios en la clase
 
-include './class/Usuario.php';
+include './class/Producto.php';
 
 
-$usuarioIngresado = new Usuario();
+$productoIngresado = new Producto();
 
-if(isset($_POST["usuario"]) && !empty($_POST["usuario"]) && isset($_POST["clave"]) && !empty($_POST["clave"]) && isset($_POST["mail"]) && !empty($_POST["mail"]) )
+if(isset($_POST["codigo"]) && isset($_POST["nombre"]) && isset($_POST["tipo"]) && isset($_POST["stock"]) && isset($_POST["precio"]) )
 {
     
-    $usuarioIngresado->usuario = $_POST["usuario"];
-    $usuarioIngresado->clave = $_POST["clave"];
-    $usuarioIngresado->mail = $_POST["mail"];
+    $productoIngresado->codigo = $_POST["codigo"];
+    $productoIngresado->nombre = $_POST["nombre"];
+    $productoIngresado->tipo = $_POST["tipo"];
+    $productoIngresado->stock = $_POST["stock"];
+    $productoIngresado->precio = $_POST["precio"];
 
-    echo Usuario::BuscarUsuario($usuarioIngresado);
+    if(Producto::ValidarProducto($productoIngresado))
+    {   
+        echo Producto::BuscarProducto($productoIngresado);
+
+    }
+    else
+    {
+        echo "No se pudo hacer";
+    }
+
 }
 else
 {
-    echo "Espacios invalidos o vacios";
+    echo "Faltan Datos";
 }
 
 ?>

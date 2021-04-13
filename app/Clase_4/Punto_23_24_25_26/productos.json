@@ -1,0 +1,18 @@
+[
+    {
+        "codigo": "111111",
+        "nombre": "Jabon",
+        "tipo": "Perfumeria",
+        "stock": 100,
+        "precio": "150",
+        "id": 7413
+    },
+    {
+        "codigo": "222222",
+        "nombre": "Papel",
+        "tipo": "Perfumeria",
+        "stock": "10",
+        "precio": "150",
+        "id": 8727
+    }
+]

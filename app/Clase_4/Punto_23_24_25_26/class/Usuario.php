@@ -113,22 +113,28 @@ class Usuario{
     static function LeerJSON()
     {
         $a=array();
+        $b=array();
+
      
         if(($archivo=fopen("usuarios.json","r")) != false)
         {
             $dato = fread($archivo,filesize("usuarios.json"));
             $a=json_decode($dato);
-            
+              
+        }
+
+        foreach ($a as $key) {
+            array_push($b,new Usuario($key->usuario,$key->clave,$key->mail,$key->id,$key->fecha)) ;
         }
 
         fclose($archivo);
 
-        return $a;
+        return $b;
     }
 
     function __toString()
     {
-        return $this->usuario . ' ' . $this->clave . ' ' . $this->mail . $this->id . ' ' . $this->fecha;
+        return $this->usuario . ' ' . $this->clave . ' ' . $this->mail . ' ' . $this->id . ' ' . ($this->fecha)->format('d-m-Y') ;
     }
 
     static function Listar($array)
