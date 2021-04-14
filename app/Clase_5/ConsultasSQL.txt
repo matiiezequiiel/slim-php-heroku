@@ -1,0 +1,24 @@
+INSERT INTO `comercio`(`nombre`, `apellido`, `clave`, `mail`, `fecha_registro`, `localidad`)
+VALUES ('Mariano','Kautor','123456','dkantor0@example.com','2020/07/01','Quilmes'),
+('German','Gerram','123456','ggerram1@hud.gov','2020/08/05','Berazategui'),
+('Deloris','Fosis','123456','bsharpe2@wisc.edu','2020/11/28','Avellaned'),
+('Brok','Neiner','123456','bblazic3@desdev.cn','2020/08/12','Quilmes'),
+('Garrick','Brent','123456','nt4@theguardian.com','2020/12/17','Moron'),
+('Bili','Baus','123456','bhoff5@addthis.com','2020/11/27','Moreno')
+
+INSERT INTO `ventas`(`id_producto`, `id_usuario`, `cantidad`, `fecha_de_venta`)
+VALUES ('1001','101',2,'2020/07/19'),
+       ('1008','102',3,'2020/07/19'),
+       ('1007','102',4,'2020/07/19'),
+       ('1006','103',5,'2020/07/19'),
+       ('1003','104',6,'2020/07/19'),
+       ('1005','105',7,'2020/07/19'),
+       ('1003','104',6,'2020/07/19'),
+       ('1003','106',6,'2020/07/19'),
+       ('1002','106',6,'2020/07/19'),
+       ('1002','106',1,'2020/07/19')
+
+
+
+
+
