@@ -1,0 +1,36 @@
+INSERT INTO `usuarios`(`nombre`, `apellido`, `clave`, `mail`, `fecha_de_registro`, `localidad`)
+VALUES ('Mariano','Kautor','123456','dkantor0@example.com','2020/07/01','Quilmes'),
+('German','Gerram','123456','ggerram1@hud.gov','2020/08/05','Berazategui'),
+('Deloris','Fosis','123456','bsharpe2@wisc.edu','2020/11/28','Avellaned'),
+('Brok','Neiner','123456','bblazic3@desdev.cn','2020/08/12','Quilmes'),
+('Garrick','Brent','123456','nt4@theguardian.com','2020/12/17','Moron'),
+('Bili','Baus','123456','bhoff5@addthis.com','2020/11/27','Moreno')
+
+
+INSERT INTO `ventas`(`id_producto`, `id_usuario`, `cantidad`, `fecha_de_venta`)
+VALUES ('1001','101',2,'2020/07/19'),
+       ('1008','102',3,'2020/07/19'),
+       ('1007','102',4,'2020/07/19'),
+       ('1006','103',5,'2020/07/19'),
+       ('1003','104',6,'2020/07/19'),
+       ('1005','105',7,'2020/07/19'),
+       ('1003','104',6,'2020/07/19'),
+       ('1003','106',6,'2020/07/19'),
+       ('1002','106',6,'2020/07/19'),
+       ('1002','106',1,'2020/07/19')
+
+
+INSERT INTO `productos`(`id`, `codigo_de_barra`, `nombre`, `tipo`, `stock`, `precio`, `fecha_de_creacion`, `fecha_de_modificacion`) 
+VALUES (1001,'77900361','Westmacott','liquido',33,15.87,'2021/09/02','2020/09/26'),
+(1002,'77900362','Spirit','solido',45,69.74,'2020/09/18','2020/04/14'),
+(1003,'77900363','Newgroshv','polvo',14,68.19,'2020/11/29','2021/02/11'),
+(1004,'77900364','McNickle','polvo',19,53.51,'2020/11/28','2020/04/17'),
+(1005,'77900365','Hudd','solido',68,25.56,'2020/12/19','2020/06/19'),
+(1006,'77900366','Schrader','polvo',96,54.87,'2020/08/02','2020/04/18'),
+(1007,'77900367','Bachellier','solido',59,69.17,'2021/01/30','2020/06/07'),
+(1008,'77900368','Fleming','solido',38,66.77,'2020/10/26','2020/03/10'),
+(1009,'77900369','Hurry','solido',44,43.01,'2020/07/04','2020/05/30'),
+(1010,'77900310','Krauss','polvo',73,35.73,'2021/03/03','2020/08/30')
+
+
+
