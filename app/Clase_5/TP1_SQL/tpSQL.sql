@@ -58,7 +58,7 @@ SELECT SUM(cantidad) as total_vendidos FROM `ventas`
 
 5. Mostrar los primeros 3 números de productos que se han enviado.
 
-SELECT * FROM `productos` ORDER BY fecha_de_creacion LIMIT 3
+SELECT codigo_de_barra FROM `productos` ORDER BY fecha_de_creacion LIMIT 3
 
 6. Mostrar los nombres del usuario y los nombres de los productos de cada venta.
 
