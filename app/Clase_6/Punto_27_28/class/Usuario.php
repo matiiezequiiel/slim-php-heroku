@@ -64,7 +64,7 @@ class Usuario{
                return $this->id;
     }
 
-    public static function TraerTodosLosUsuarios()
+    public static function SelectAllUsuariosBD()
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("select id,nombre,apellido,clave,mail,fecha_de_registro as fechaRegistro,localidad from usuarios");
@@ -79,14 +79,11 @@ class Usuario{
 
     static function Listar($array)
     {
-        // echo "<html>";
         echo "<ul>";
         foreach ($array as $value) {
             echo $value;
-            // echo PHP_EOL;
         }
         echo "</ul>";
-        // echo "</html>";
     }
 
 

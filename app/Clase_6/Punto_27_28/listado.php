@@ -20,16 +20,16 @@ if(isset($_GET['listado']) && !empty($_GET['listado']))
     switch($listado)
     {
        case  "usuarios":
-           $usuarios=Usuario::TraerTodosLosUsuarios();
+           $usuarios=Usuario::SelectAllUsuariosBD();
            Usuario::Listar($usuarios);
         break;
        case  "productos":
-            $arrayUsuarios= Usuario::LeerJSON();
-            Usuario::Listar($arrayUsuarios);
+            $arrayProductos= Producto::SelectAllProductosBD();
+            Producto::Listar($arrayProductos);
         break;
        case  "ventas":
-            $arrayUsuarios= Usuario::LeerJSON();
-            Usuario::Listar($arrayUsuarios);
+            $arrayVentas= Venta::SelectAllVentasBD();
+            Venta::Listar($arrayVentas);
         break;
     }
 

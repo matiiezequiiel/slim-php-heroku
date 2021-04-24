@@ -8,21 +8,28 @@ class Venta{
     public $cantidadVendidos;
     public $fechaVenta;
 
-    function __construct($idVenta=null,$codigoProd=null,$idComprador=null,$cantidadVendidos=null,$fechaVenta=null)
+    function __construct()
+    {
+        
+    }
+
+    static function CrearVenta($idVenta=null,$codigoProd=null,$idComprador=null,$cantidadVendidos=null,$fechaVenta=null)
     {
        
-        $this->idVenta=$idVenta;
-        $this->codigoProd=$codigoProd;
-        $this->idComprador=$idComprador;
-        $this->cantidadVendidos=$cantidadVendidos;
+        $v=new Venta();
+
+        $v->idVenta=$idVenta;
+        $v->codigoProd=$codigoProd;
+        $v->idComprador=$idComprador;
+        $v->cantidadVendidos=$cantidadVendidos;
 
         if($fechaVenta == null)
         {
-            $this->fechaVenta = new DateTime('now');
+            $v->fechaVenta = new DateTime('now');
         }
         else
         {
-            $this->fechaVenta = $fechaVenta;
+            $v->fechaVenta = $fechaVenta;
         }
       
        
@@ -42,6 +49,14 @@ class Venta{
 
     }
 
+    public static function SelectAllVentasBD()
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id as idVenta, id_producto as codigoProd, id_usuario as idComprador, cantidad as cantidadVendidos, fecha_de_venta as fechaVenta from ventas");
+			$consulta->execute();			
+			return $consulta->fetchAll(PDO::FETCH_CLASS, "Venta");		
+	}
+
     public function InsertarVentaParametros()
     {
                $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -55,6 +70,20 @@ class Venta{
                return $this->idVenta;
     }
 
+    function __toString()
+    {
+        return "<li>" .  $this->idVenta . ' ' . $this->codigoProd . ' ' . $this->idComprador . ' ' . $this->cantidadVendidos . "</li>" ;
+    }
+
+    static function Listar($array)
+    {
+        echo "<ul>";
+        foreach ($array as $value) {
+            echo $value;
+        }
+        echo "</ul>";
+       
+    }
 
 }
 

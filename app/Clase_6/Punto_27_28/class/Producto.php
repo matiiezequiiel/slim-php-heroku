@@ -11,33 +11,44 @@ class Producto{
     public $fechaCreacion;
     public $fechaModificacion;
 
-    function __construct($id=null,$codigo=null,$nombre=null,$tipo=null,$stock=null,$precio=null,$fechaCreacion=null,$fechaModificacion=null)
+    function __construct()
     {
-        $this->id=$id;
-        $this->codigo=$codigo;
-        $this->nombre=$nombre;
-        $this->tipo=$tipo;
-        $this->stock=intval($stock);
-        $this->precio = $precio;
+        
+        
+    }
+
+    static function CrearProducto($id=null,$codigo=null,$nombre=null,$tipo=null,$stock=null,$precio=null,$fechaCreacion=null,$fechaModificacion=null)
+    {
+        $p=new Producto();
+
+        $p->id=$id;
+        $p->codigo=$codigo;
+        $p->nombre=$nombre;
+        $p->tipo=$tipo;
+        $p->stock=intval($stock);
+        $p->precio = $precio;
         if($fechaCreacion == null)
         {
-            $this->fechaCreacion = new DateTime('now');
+            $p->fechaCreacion = new DateTime('now');
         }
         else
         {
-            $this->fechaCreacion = $fechaCreacion;
+            $p->fechaCreacion = $fechaCreacion;
         }
 
         if($fechaModificacion == null)
         {
-            $this->fechaModificacion = new DateTime('now');
+            $p->fechaModificacion = new DateTime('now');
         }
         else
         {
-            $this->fechaModificacion = $fechaModificacion;
+            $p->fechaModificacion = $fechaModificacion;
         }
         
+        return $p;
     }
+
+   
 
     static function ValidarProducto($productoIngresado)
     {
@@ -53,23 +64,45 @@ class Producto{
 
     }
 
+
+    static function SelectAllProductosBD()
+    {
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("select id, codigo_de_barra as codigo, nombre, tipo, stock, precio, fecha_de_creacion as fechaCreacion, fecha_de_modificacion as fechaModificacion from productos");
+        $consulta->execute();			
+        return $consulta->fetchAll(PDO::FETCH_CLASS, "Producto");	
+    }
     
     public function InsertarProductoParametros()
     {
-               $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-               $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into productos (codigo_de_barra,nombre,tipo,stock,precio,fecha_de_creacion,fecha_de_modificacion)values(:codigo_de_barra,:nombre,:tipo,:stock,:precio,:fecha_de_creacion,:fecha_de_modificacion)");
-               $consulta->bindValue(':codigo_de_barra',$this->codigo, PDO::PARAM_INT);
-               $consulta->bindValue(':nombre', $this->nombre, PDO::PARAM_STR);
-               $consulta->bindValue(':tipo', $this->tipo, PDO::PARAM_STR);
-               $consulta->bindValue(':stock', $this->stock, PDO::PARAM_STR);
-               $consulta->bindValue(':precio', $this->precio, PDO::PARAM_INT);
-               $consulta->bindValue(':fecha_de_creacion', ($this->fechaCreacion)->format('Y/m/d'), PDO::PARAM_STR);
-               $consulta->bindValue(':fecha_de_modificacion', ($this->fechaModificacion)->format('Y/m/d'), PDO::PARAM_STR);
-               $consulta->execute();		
-               $this->id = $objetoAccesoDato->RetornarUltimoIdInsertado();
-               return $this->id;
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("INSERT into productos (codigo_de_barra,nombre,tipo,stock,precio,fecha_de_creacion,fecha_de_modificacion)values(:codigo_de_barra,:nombre,:tipo,:stock,:precio,:fecha_de_creacion,:fecha_de_modificacion)");
+        $consulta->bindValue(':codigo_de_barra',$this->codigo, PDO::PARAM_INT);
+        $consulta->bindValue(':nombre', $this->nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':tipo', $this->tipo, PDO::PARAM_STR);
+        $consulta->bindValue(':stock', $this->stock, PDO::PARAM_STR);
+        $consulta->bindValue(':precio', $this->precio, PDO::PARAM_INT);
+        $consulta->bindValue(':fecha_de_creacion', ($this->fechaCreacion)->format('Y/m/d'), PDO::PARAM_STR);
+        $consulta->bindValue(':fecha_de_modificacion', ($this->fechaModificacion)->format('Y/m/d'), PDO::PARAM_STR);
+        $consulta->execute();		
+        $this->id = $objetoAccesoDato->RetornarUltimoIdInsertado();
+        return $this->id;
     }
 
+    function __toString()
+    {
+        return "<li>" .  $this->id . ' ' . $this->codigo . ' ' . $this->nombre . ' ' . $this->tipo . ' ' .  $this->stock . ' ' . $this->precio . ' ' . $this->fechaCreacion.' ' .$this->fechaModificacion . "</li>" ;
+    }
+
+
+    static function Listar($array)
+    {
+        echo "<ul>";
+        foreach ($array as $value) {
+            echo $value;
+        }
+        echo "</ul>";
+    }
 
 
 }

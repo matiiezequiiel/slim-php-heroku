@@ -34,11 +34,9 @@ class Producto{
         if(!empty($productoIngresado->codigo) && !empty($productoIngresado->nombre) && !empty($productoIngresado->tipo) && !empty($productoIngresado->stock) && !empty($productoIngresado->precio))
         {
             $esCorrecto=true; //Agregar validaciones.
-        }
-                 
+        }               
         
         return $esCorrecto;
-
     }
 
     static function BuscarProducto($producto)
@@ -159,8 +157,6 @@ class Producto{
 
     }
     
-
-
 
 }
 
