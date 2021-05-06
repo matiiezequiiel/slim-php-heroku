@@ -49,6 +49,20 @@ class Usuario{
 
     }
 
+    static function ValidarUsuarioLogin($usuarioIngresado)
+    {
+        $esCorrecto = false;
+
+        if(!empty($usuarioIngresado->clave) && !empty($usuarioIngresado->mail))
+        {
+            $esCorrecto=true; //Agregar validaciones.
+        }
+                 
+        
+        return $esCorrecto;
+
+    }
+
     public function InsertarUsuarioParametros()
     {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -72,6 +86,40 @@ class Usuario{
         $consulta->execute();			
         return $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");
         		
+	}
+
+    public static function LoginUsuarioBD($mail,$clave) 
+	{
+            $retorno="";
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id,nombre,apellido,clave,mail,fecha_de_registro as fechaRegistro,localidad from usuarios where mail = :mail");
+            $consulta->bindValue(':mail', $mail, PDO::PARAM_STR);
+			$consulta->execute();
+			$usuarios= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");
+			
+            if (sizeof($usuarios)==0)
+            {   
+                $retorno="Usuario no registrado";
+            }
+            else
+            {
+                foreach ($usuarios as $value) {
+                    if($value->mail == $mail && $value->clave == $clave)
+                    {
+                        $retorno= "Verificado";
+                        break;
+                    }
+                    else
+                    {
+                        $retorno= "Error en los datos";
+                    }
+                }
+            }
+                
+            
+            return $retorno;				
+
+			
 	}
 
     function __toString()

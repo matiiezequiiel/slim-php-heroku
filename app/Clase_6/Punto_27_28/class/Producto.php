@@ -1,5 +1,7 @@
 <?php
 
+use Producto as GlobalProducto;
+
 class Producto{
 
     public $id;
@@ -71,6 +73,44 @@ class Producto{
         $consulta =$objetoAccesoDato->RetornarConsulta("select id, codigo_de_barra as codigo, nombre, tipo, stock, precio, fecha_de_creacion as fechaCreacion, fecha_de_modificacion as fechaModificacion from productos");
         $consulta->execute();			
         return $consulta->fetchAll(PDO::FETCH_CLASS, "Producto");	
+    }
+
+    static function BuscarProductoBD($producto)
+    {
+        $retorno="";
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("select id, codigo_de_barra as codigo, nombre, tipo, stock, precio, fecha_de_creacion as fechaCreacion, fecha_de_modificacion as fechaModificacion from productos where codigo_de_barra = :codigo_de_barra");
+        $consulta->bindValue(':codigo_de_barra',$producto->codigo, PDO::PARAM_INT);
+        $consulta->execute();			
+        $respConsulta=$consulta->fetchAll(PDO::FETCH_CLASS, "Producto");	
+
+        if (sizeof($respConsulta)==0)
+        {   
+           $producto->InsertarProductoParametros();
+           $retorno = "Ingresado";
+        }else
+        {
+            foreach ($respConsulta as  $value) {
+                $value->stock= $value->stock + $producto->stock;
+                $value->UpdateStockProducto();
+                $retorno = "Actualizado";
+            }
+
+        }
+
+        return $retorno;
+    }
+
+    public function UpdateStockProducto()
+    {
+           $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+           $consulta =$objetoAccesoDato->RetornarConsulta("
+               update productos 
+               set stock=:stock,
+               WHERE codigo_de_barra=:codigo");
+           $consulta->bindValue(':codigo',$this->codigo, PDO::PARAM_INT);
+           $consulta->bindValue(':stock', $this->stock, PDO::PARAM_STR);
+           return $consulta->execute();
     }
     
     public function InsertarProductoParametros()
